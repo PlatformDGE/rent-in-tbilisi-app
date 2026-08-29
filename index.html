@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1d3560">
+
+<title>Rent in Tbilisi — Agent Hub</title>
+
+<style>
+:root{
+  --blue:#1d3560;
+  --blue2:#274978;
+  --bg:#f4f6f9;
+  --white:#ffffff;
+  --text:#172033;
+  --gray:#7d8797;
+  --border:#e5e9ef;
+  --green:#1ca66f;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  padding:0;
+  background:var(--bg);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  color:var(--text);
+}
+
+body{
+  min-height:100vh;
+}
+
+.app{
+  max-width:500px;
+  margin:0 auto;
+  min-height:100vh;
+  padding-bottom:100px;
+}
+
+/* HEADER */
+
+.header{
+  background:linear-gradient(145deg,var(--blue),var(--blue2));
+  color:white;
+  padding:calc(42px + env(safe-area-inset-top)) 22px 28px;
+  border-radius:0 0 32px 32px;
+}
+
+.brand{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  opacity:.72;
+}
+
+.header h1{
+  margin:8px 0 5px;
+  font-size:30px;
+}
+
+.header p{
+  margin:0;
+  opacity:.75;
+  font-size:14px;
+}
+
+/* SEARCH */
+
+.search{
+  margin:18px 18px 0;
+}
+
+.search input{
+  width:100%;
+  padding:16px 18px;
+  border:0;
+  outline:none;
+  border-radius:17px;
+  background:white;
+  font-size:16px;
+  box-shadow:0 5px 25px rgba(25,45,75,.06);
+}
+
+/* CONTENT */
+
+.content{
+  padding:0 18px;
+}
+
+.title{
+  font-size:18px;
+  font-weight:750;
+  margin:25px 2px 14px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:white;
+  border-radius:21px;
+  padding:18px;
+  min-height:128px;
+  box-shadow:0 5px 20px rgba(25,45,75,.04);
+  cursor:pointer;
+  transition:.12s;
+}
+
+.card:active{
+  transform:scale(.97);
+}
+
+.icon{
+  font-size:29px;
+  margin-bottom:13px;
+}
+
+.card strong{
+  display:block;
+  font-size:15px;
+}
+
+.card small{
+  display:block;
+  color:var(--gray);
+  margin-top:6px;
+  line-height:1.3;
+}
+
+/* AI */
+
+.ai{
+  margin:20px 18px;
+  background:white;
+  border-radius:24px;
+  padding:20px;
+  box-shadow:0 5px 20px rgba(25,45,75,.04);
+}
+
+.ai-title{
+  font-size:19px;
+  font-weight:800;
+}
+
+.ai-sub{
+  font-size:13px;
+  color:var(--gray);
+  margin-top:5px;
+}
+
+textarea{
+  width:100%;
+  min-height:95px;
+  margin-top:15px;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:15px;
+  font:inherit;
+  font-size:15px;
+  resize:none;
+  outline:none;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  border-radius:16px;
+  background:var(--blue);
+  color:white;
+  padding:15px;
+  margin-top:11px;
+  font-size:15px;
+  font-weight:700;
+}
+
+.answer{
+  display:none;
+  margin-top:13px;
+  background:#f5f7fa;
+  padding:15px;
+  border-radius:16px;
+  font-size:14px;
+  line-height:1.5;
+}
+
+/* SCREENS */
+
+.screen{
+  display:none;
+}
+
+.screen.active{
+  display:block;
+}
+
+.pageHeader{
+  padding:calc(24px + env(safe-area-inset-top)) 18px 10px;
+}
+
+.back{
+  display:inline-flex;
+  align-items:center;
+  border:0;
+  background:white;
+  border-radius:14px;
+  padding:11px 15px;
+  font-size:14px;
+  font-weight:650;
+  color:var(--blue);
+}
+
+.pageHeader h2{
+  margin:25px 3px 6px;
+  font-size:28px;
+}
+
+.pageHeader p{
+  margin:0 3px;
+  color:var(--gray);
+}
+
+.list{
+  padding:10px 18px 30px;
+}
+
+.item{
+  background:white;
+  padding:18px;
+  border-radius:19px;
+  margin-bottom:11px;
+  line-height:1.45;
+  box-shadow:0 4px 16px rgba(25,45,75,.035);
+}
+
+.item strong{
+  display:block;
+  margin-bottom:7px;
+}
+
+.badge{
+  display:inline-block;
+  background:#eaf7f1;
+  color:var(--green);
+  padding:5px 9px;
+  border-radius:50px;
+  font-size:11px;
+  font-weight:750;
+  margin-top:8px;
+}
+
+.copy{
+  cursor:pointer;
+}
+
+.copy:active{
+  transform:scale(.985);
+}
+
+/* FORM */
+
+.input{
+  width:100%;
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:14px;
+  margin-top:10px;
+  font-size:16px;
+  background:white;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:105px;
+  transform:translateX(-50%) translateY(30px);
+  background:#182033;
+  color:white;
+  padding:12px 18px;
+  border-radius:50px;
+  font-size:13px;
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:100;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* NAV */
+
+.bottom{
+  position:fixed;
+  z-index:50;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:100%;
+  max-width:500px;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-top:1px solid var(--border);
+  display:flex;
+  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
+}
+
+.nav{
+  flex:1;
+  text-align:center;
+  color:#8a94a4;
+  font-size:10px;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.nav span{
+  display:block;
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:var(--blue);
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- HOME -->
+
+<section id="home" class="screen active">
+
+<div class="header">
+  <div class="brand">RENT IN TBILISI</div>
+  <h1>Agent Hub</h1>
+  <p>Всё необходимое агенту в одном месте</p>
+</div>
+
+<div class="search">
+<input
+  id="search"
+  type="search"
+  placeholder="Поиск: комиссия, договор, фото..."
+  oninput="smartSearch(this.value)"
+>
+</div>
+
+<div class="content">
+
+<div class="title">Работа агента</div>
+
+<div class="grid">
+
+<div class="card" onclick="openPage('standards')">
+  <div class="icon">📘</div>
+  <strong>Стандарты</strong>
+  <small>Правила публикации и работы</small>
+</div>
+
+<div class="card" onclick="openPage('commission')">
+  <div class="icon">💰</div>
+  <strong>Комиссия</strong>
+  <small>Уровни и калькулятор</small>
+</div>
+
+<div class="card" onclick="openPage('owners')">
+  <div class="icon">🏠</div>
+  <strong>Owners</strong>
+  <small>Работа с владельцами</small>
+</div>
+
+<div class="card" onclick="openPage('clients')">
+  <div class="icon">👥</div>
+  <strong>Clients</strong>
+  <small>Что уточнить у клиента</small>
+</div>
+
+<div class="card" onclick="openPage('contracts')">
+  <div class="icon">📄</div>
+  <strong>Contracts</strong>
+  <small>Договоры и депозит</small>
+</div>
+
+<div class="card" onclick="openPage('quick')">
+  <div class="icon">⚡️</div>
+  <strong>Quick Response</strong>
+  <small>Готовые ответы клиентам</small>
+</div>
+
+</div>
+</div>
+
+<div class="ai">
+
+<div class="ai-title">✨ Agent AI</div>
+<div class="ai-sub">Задай вопрос по правилам Rent in Tbilisi</div>
+
+<textarea
+id="question"
+placeholder="Например: сколько получает агент после 11 сделок?"
+></textarea>
+
+<button class="primary" onclick="askAgent()">
+Спросить
+</button>
+
+<div id="answer" class="answer"></div>
+
+</div>
+
+</section>
+
+
+<!-- STANDARDS -->
+
+<section id="standards" class="screen">
+
+<div class="pageHeader">
+
+<button class="back" onclick="openPage('home')">
+← Назад
+</button>
+
+<h2>Стандарты</h2>
+<p>Основные правила работы</p>
+
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>Owner Information</strong>
+Перед публикацией объекта Owner Information обязателен.
+<div class="badge">ОБЯЗАТЕЛЬНО</div>
+</div>
+
+<div class="item">
+<strong>Телефон владельца</strong>
+Формат номера: 995XXXXXXXXX. Символ + не используется.
+</div>
+
+<div class="item">
+<strong>Имя владельца</strong>
+Имя записывается латиницей с заглавной буквы.
+</div>
+
+<div class="item">
+<strong>Публикация объекта</strong>
+Стандарт: 9 фотографий + 1 видео.
+</div>
+
+<div class="item">
+<strong>Описание</strong>
+Указываем адрес, район или метро, удобства, цену, депозит, условия по питомцам и геолокацию.
+</div>
+
+<div class="item">
+<strong>Дубликаты</strong>
+Перед публикацией необходимо проверить SS.ge и MyHome.
+</div>
+
+<div class="item">
+<strong>Важно</strong>
+Агент отправляет ссылку на объявление, а не скриншот.
+</div>
+
+</div>
+</section>
+
+
+<!-- COMMISSION -->
+
+<section id="commission" class="screen">
+
+<div class="pageHeader">
+
+<button class="back" onclick="openPage('home')">
+← Назад
+</button>
+
+<h2>Комиссия</h2>
+<p>Уровни агента</p>
+
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>0–10 сделок</strong>
+Агент получает 50%.
+</div>
+
+<div class="item">
+<strong>11–100 сделок</strong>
+Агент получает 70%.
+</div>
+
+<div class="item">
+<strong>Более 100 сделок</strong>
+Агент получает 90%.
+<div class="badge">ПОСТОЯННЫЙ УРОВЕНЬ</div>
+</div>
+
+<div class="item">
+<strong>Long-term Rent</strong>
+Комиссия компании: 50% стоимости одного месяца аренды.
+</div>
+
+<div class="item">
+<strong>Commercial</strong>
+Комиссия компании: 100%.
+</div>
+
+<div class="item">
+<strong>Sale</strong>
+Комиссия компании: 3%.
+</div>
+
+<div class="item">
+
+<strong>Калькулятор агента</strong>
+
+<input
+class="input"
+id="amount"
+type="number"
+inputmode="decimal"
+placeholder="Комиссия компании, $"
+>
+
+<select class="input" id="agentLevel">
+<option value="0.5">Уровень 50%</option>
+<option value="0.7">Уровень 70%</option>
+<option value="0.9">Уровень 90%</option>
+</select>
+
+<button class="primary" onclick="calc()">
+Рассчитать
+</button>
+
+<div id="calcResult" class="answer"></div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- OWNERS -->
+
+<section id="owners" class="screen">
+
+<div class="pageHeader">
+
+<button class="back" onclick="openPage('home')">
+← Назад
+</button>
+
+<h2>Owners</h2>
+<p>Работа с владельцами</p>
+
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>Owner Information</strong>
+Сначала получаем и фиксируем информацию владельца.
+</div>
+
+<div class="item">
+<strong>Exclusive Listing</strong>
+Эксклюзивный объект отмечается отдельно.
+</div>
+
+<div class="item">
+<strong>Discount</strong>
+Изменение цены отправляется в соответствующий чат.
+</div>
+
+<div class="item">
+<strong>Update</strong>
+При изменении информации необходимо обновить объект.
+</div>
+
+<div class="item">
+<strong>Rented / Sold By Agent</strong>
+После сделки указываем агента, который закрыл объект.
+</div>
+
+</div>
+</section>
+
+
+<!-- CLIENTS -->
+
+<section id="clients" class="screen">
+
+<div class="pageHeader">
+
+<button class="back" onclick="openPage('home')">
+← Назад
+</button>
+
+<h2>Clients</h2>
+<p>Информация перед показом</p>
+
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>Уточнить у клиента</strong>
+Кто будет проживать?<br><br>
+На какой срок нужна квартира?<br><br>
+Есть ли домашние животные?<br><br>
+Какой бюджет?<br><br>
+Когда готовы въехать?
+</div>
+
+<div class="item">
+<strong>Контроль ответа</strong>
+Не оставлять запрос клиента без ответа.
+</div>
+
+</div>
+</section>
+
+
+<!-- CONTRACTS -->
+
+<section id="contracts" class="screen">
+
+<div class="pageHeader">
+
+<button class="back" onclick="openPage('home')">
+← Назад
+</button>
+
+<h2>Contracts</h2>
+<p>Основные правила договора</p>
+
+</div>
+
+<div class="list">
+
+<div class="item">
+<strong>Депозит</strong>
+По стандарту депозит равен стоимости одного месяца аренды, если стороны не договорились иначе.
+</div>
+
+<div class="item">
+<strong>Срок</strong>
+В договоре указываются дата начала и дата окончания аренды.
+</div>
+
+<div class="item">
+<strong>Кадастровый код</strong>
+Кадастровый код должен начинаться с 01.
+</div>
+
+<div class="item">
+<strong>Стороны</strong>
+В договор вносятся данные Owner и Tenant.
+</div>
+
+</div>
+</section>
+
+
+<!-- QUICK -->
+
+<section id="quick" class="screen">
+
+<div class="pageHeader">
+
+<button class="back" onclick="openPage('home')">
+← Назад
+</button>
+
+<h2>Quick Response</h2>
+<p>Нажми на сообщение, чтобы скопировать</p>
+
+</div>
+
+<div class="list">
+
+<div class="item copy"
+onclick="copyMessage('Здравствуйте! Да, квартира доступна. Когда вам будет удобно посмотреть?')">
+
+<strong>Квартира доступна</strong>
+Здравствуйте! Да, квартира доступна. Когда вам будет удобно посмотреть?
+
+</div>
+
+<div class="item copy"
+onclick="copyMessage('Подскажите, пожалуйста, кто будет проживать, на какой срок вы ищете квартиру и есть ли домашние животные?')">
+
+<strong>Информация о клиенте</strong>
+Подскажите, пожалуйста, кто будет проживать, на какой срок вы ищете квартиру и есть ли домашние животные?
+
+</div>
+
+<div class="item copy"
+onclick="copyMessage('Для бронирования квартиры необходимо внести депозит в размере одного месяца аренды.')">
+
+<strong>Депозит</strong>
+Для бронирования квартиры необходимо внести депозит в размере одного месяца аренды.
+
+</div>
+
+<div class="item copy"
+onclick="copyMessage('Отправьте, пожалуйста, ссылку на объект, который вас заинтересовал.')">
+
+<strong>Ссылка на объект</strong>
+Отправьте, пожалуйста, ссылку на объект, который вас заинтересовал.
+
+</div>
+
+</div>
+</section>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom">
+
+<div id="nav-home" class="nav active" onclick="openPage('home')">
+<span>⌂</span>
+Главная
+</div>
+
+<div id="nav-standards" class="nav" onclick="openPage('standards')">
+<span>▣</span>
+База
+</div>
+
+<div id="nav-quick" class="nav" onclick="openPage('quick')">
+<span>⚡</span>
+Ответы
+</div>
+
+<div id="nav-commission" class="nav" onclick="openPage('commission')">
+<span>◎</span>
+Комиссия
+</div>
+
+</nav>
+
+</div>
+
+<div id="toast" class="toast">
+Скопировано ✓
+</div>
+
+
+<script>
+
+function openPage(page){
+
+document.querySelectorAll('.screen').forEach(function(el){
+  el.classList.remove('active');
+});
+
+document.getElementById(page).classList.add('active');
+
+document.querySelectorAll('.nav').forEach(function(el){
+  el.classList.remove('active');
+});
+
+let nav=document.getElementById('nav-'+page);
+
+if(nav){
+  nav.classList.add('active');
+}
+
+window.scrollTo({
+  top:0,
+  behavior:'smooth'
+});
+
+}
+
+
+function calc(){
+
+let amount=parseFloat(
+document.getElementById('amount').value
+);
+
+let level=parseFloat(
+document.getElementById('agentLevel').value
+);
+
+let box=document.getElementById('calcResult');
+
+if(isNaN(amount)){
+
+box.style.display='block';
+box.innerHTML='Введите сумму комиссии компании.';
+
+return;
+}
+
+let agent=amount*level;
+let company=amount-agent;
+
+box.style.display='block';
+
+box.innerHTML=
+'<strong>Агент: $'+agent.toFixed(2)+'</strong><br>'+
+'Компания: $'+company.toFixed(2);
+
+}
+
+
+function askAgent(){
+
+let question=
+document.getElementById('question').value
+.toLowerCase()
+.trim();
+
+let answer='';
+
+if(!question){
+
+answer='Напиши вопрос, и я попробую найти ответ в локальной базе.';
+
+}
+
+else if(
+question.includes('11') ||
+question.includes('70%') ||
+question.includes('70 процент')
+){
+
+answer='После достижения 11 сделок агент переходит на уровень 70%.';
+
+}
+
+else if(
+question.includes('100') ||
+question.includes('90%')
+){
+
+answer='После более чем 100 сделок агент получает 90% комиссии. Этот уровень сохраняется постоянно.';
+
+}
+
+else if(
+question.includes('коммер') ||
+question.includes('commercial')
+){
+
+answer='Для коммерческой недвижимости комиссия компании составляет 100%.';
+
+}
+
+else if(
+question.includes('продаж') ||
+question.includes('sale')
+){
+
+answer='При продаже комиссия компании составляет 3%.';
+
+}
+
+else if(
+question.includes('комисс')
+){
+
+answer='Для долгосрочной аренды комиссия компании обычно составляет 50% стоимости одного месяца аренды. Доля агента зависит от его уровня: 50%, 70% или 90%.';
+
+}
+
+else if(
+question.includes('фото') ||
+question.includes('видео')
+){
+
+answer='Стандарт публикации объекта: 9 фотографий и 1 видео.';
+
+}
+
+else if(
+question.includes('телефон') ||
+question.includes('номер')
+){
+
+answer='Телефон владельца необходимо записывать в формате 995XXXXXXXXX без символа +.';
+
+}
+
+else if(
+question.includes('депозит')
+){
+
+answer='Стандартный депозит — стоимость одного месяца аренды, если Owner и Tenant не согласовали другие условия.';
+
+}
+
+else if(
+question.includes('кадастр')
+){
+
+answer='Кадастровый код должен начинаться с 01.';
+
+}
+
+else if(
+question.includes('питом') ||
+question.includes('собак') ||
+question.includes('кошк')
+){
+
+answer='Условия по питомцам необходимо уточнить у владельца и обязательно сообщить клиенту до согласования аренды.';
+
+}
+
+else if(
+question.includes('owner') ||
+question.includes('владел')
+){
+
+answer='Owner Information необходимо заполнить до публикации объекта.';
+
+}
+
+else{
+
+answer='Точного ответа пока нет в локальной версии базы. Следующий этап — подключить полную базу знаний и настоящий AI.';
+
+}
+
+let box=document.getElementById('answer');
+
+box.style.display='block';
+box.innerText=answer;
+
+}
+
+
+function copyMessage(text){
+
+if(navigator.clipboard){
+
+navigator.clipboard.writeText(text)
+.then(showToast)
+.catch(function(){
+  fallbackCopy(text);
+});
+
+}else{
+
+fallbackCopy(text);
+
+}
+
+}
+
+
+function fallbackCopy(text){
+
+let area=document.createElement('textarea');
+
+area.value=text;
+document.body.appendChild(area);
+
+area.select();
+document.execCommand('copy');
+
+area.remove();
+
+showToast();
+
+}
+
+
+function showToast(){
+
+let toast=document.getElementById('toast');
+
+toast.classList.add('show');
+
+setTimeout(function(){
+toast.classList.remove('show');
+},1600);
+
+}
+
+
+function smartSearch(value){
+
+let q=value.toLowerCase().trim();
+
+if(q.length<3) return;
+
+if(
+q.includes('комисс') ||
+q.includes('деньг') ||
+q.includes('процент')
+){
+openPage('commission');
+}
+
+else if(
+q.includes('договор') ||
+q.includes('депозит') ||
+q.includes('кадастр')
+){
+openPage('contracts');
+}
+
+else if(
+q.includes('владел') ||
+q.includes('owner')
+){
+openPage('owners');
+}
+
+else if(
+q.includes('клиент') ||
+q.includes('client')
+){
+openPage('clients');
+}
+
+else if(
+q.includes('ответ') ||
+q.includes('сообщен')
+){
+openPage('quick');
+}
+
+else if(
+q.includes('стандарт') ||
+q.includes('фото') ||
+q.includes('телефон')
+){
+openPage('standards');
+}
+
+}
+
+</script>
+
+</body>
+</html>
